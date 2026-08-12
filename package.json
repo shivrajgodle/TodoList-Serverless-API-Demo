@@ -1,0 +1,32 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "Local-only serverless To-Do API (AWS Lambda-compatible), built as a 4-hour AI-assisted development demo.",
+  "main": "dist/src/localServer.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/src/localServer.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/localServer.ts",
+    "create-table": "ts-node scripts/create-table.ts",
+    "test": "jest --runInBand"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.600.0",
+    "@aws-sdk/lib-dynamodb": "^3.600.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.138",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.2",
+    "@types/uuid": "^9.0.8",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.4",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}

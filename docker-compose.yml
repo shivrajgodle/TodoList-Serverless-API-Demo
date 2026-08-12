@@ -1,0 +1,20 @@
+version: "3.8"
+
+# Only DynamoDB Local runs in Docker. The API itself runs directly on the
+# host with `npm start` / `npm run dev` - see README. This avoids paying
+# Docker image build time for the app inside a 4-hour timebox.
+services:
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: todo-api-dynamodb-local
+    ports:
+      - "8000:8000"
+    command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-inMemory"]
+    # -inMemory: data resets whenever the container restarts. That's fine
+    # (arguably desirable) for a demo/timeboxed exercise. Drop -inMemory and
+    # add a volume mount below if you want data to persist across restarts.
+    # volumes:
+    #   - dynamodb-data:/home/dynamodblocal/data
+
+# volumes:
+#   dynamodb-data:

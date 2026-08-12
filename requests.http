@@ -1,0 +1,63 @@
+### Variables
+@baseUrl = http://localhost:8080
+
+### 1. Create a to-do item
+POST {{baseUrl}}/todos
+Content-Type: application/json
+
+{
+  "title": "Buy groceries",
+  "description": "Milk, eggs, bread"
+}
+
+### 2. Create another item (no description - it's optional)
+POST {{baseUrl}}/todos
+Content-Type: application/json
+
+{
+  "title": "Write project README"
+}
+
+### 3. Create an item with a blank title -> expect 400
+POST {{baseUrl}}/todos
+Content-Type: application/json
+
+{
+  "title": "   "
+}
+
+### 4. List all to-do items
+GET {{baseUrl}}/todos
+
+### 5. Get a single item by ID
+# Replace {id} with an id returned from step 1 or 4
+GET {{baseUrl}}/todos/{id}
+
+### 6. Get a non-existent item -> expect 404
+GET {{baseUrl}}/todos/does-not-exist
+
+### 7. Update an item (partial update - only send fields you want to change)
+PATCH {{baseUrl}}/todos/{id}
+Content-Type: application/json
+
+{
+  "title": "Buy groceries and cook dinner",
+  "description": "Milk, eggs, bread, chicken"
+}
+
+### 8. Update with an invalid status -> expect 400
+PATCH {{baseUrl}}/todos/{id}
+Content-Type: application/json
+
+{
+  "status": "not-a-real-status"
+}
+
+### 9. Mark an item completed (dedicated convenience endpoint)
+POST {{baseUrl}}/todos/{id}/complete
+
+### 10. Delete an item
+DELETE {{baseUrl}}/todos/{id}
+
+### 11. Delete a non-existent item -> expect 404
+DELETE {{baseUrl}}/todos/does-not-exist
