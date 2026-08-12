@@ -1,7 +1,6 @@
 # To-Do API (TypeScript, Local-Only, Lambda-Style)
 
-A small serverless-style REST API for managing to-do items, built as a
-timeboxed (4-hour) AI-assisted development demo. **Local only** — no AWS
+A small serverless-style REST API for managing to-do items, built as a development demo. **Local only** — no AWS
 account, no deployment. The handler is written against the real AWS Lambda +
 API Gateway proxy-integration contract (`APIGatewayProxyEvent ->
 APIGatewayProxyResult`), so it's deployable as-is; only `localServer.ts`
