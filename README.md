@@ -243,24 +243,3 @@ them properly would be over-engineering for a 4-hour local-only demo:
   security-wise.
 - **No CORS configuration** — see Known Limitations above; add explicitly
   scoped CORS only if/when a browser frontend is introduced.
-
-## AI prompts used to scaffold/implement this solution
-
-For the "main AI prompts used" deliverable — the working session used one
-comprehensive prompt specifying: tech stack (TypeScript/Node.js, AWS
-Lambda-compatible handler matching the API Gateway proxy-integration
-contract, AWS SDK v3, DynamoDB Local via Docker Compose, Jest against the
-real local table), functional requirements (six CRUD operations with
-defined fields: id, title, description, status, createdAt, updatedAt),
-architecture constraints (single handler/single table, env-var config,
-consistent JSON responses with correct status codes, input validation,
-structured logging, basic error handling), local environment setup (Docker
-Compose + a table-init script avoiding an AWS CLI dependency), test
-requirements, and explicit non-goals (no auth, no deployment, no CI/CD, no
-advanced data modeling). Follow-up prompting was used for a small number of
-targeted fixes discovered while actually running the generated code
-locally (an incorrect SDK builder type reference, a missing SDK
-region/credentials configuration for the local-endpoint case, and a Maven
-invocation ordering issue in an earlier Java iteration of this same
-exercise before switching to TypeScript) — each fix was scoped to the
-specific error message produced, not a broader re-generation.
